@@ -24,10 +24,14 @@ wss.on("connection", (ws) => {
         const message = JSON.parse(data);
         if(message.type === "join"){
             if(message.isMiner){
-                UserManager.getInstance().join(message.id, true)
+                UserManager.getInstance().join(message.id, true, ws)
             } else {
-                UserManager.getInstance().join(message.id, false)
+                UserManager.getInstance().join(message.id, false, ws)
             }
+        }
+
+        if(message.type === "BLOCK_MINED"){
+            UserManager.getInstance().broadcast(message.id, message.data)
         }
     })
 })
@@ -36,3 +40,4 @@ wss.on("connection", (ws) => {
 server.listen(process.env.PORT, () => {
     console.log(`Server Running at Port ${process.env.PORT}`)
 })
+
