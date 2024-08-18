@@ -34,7 +34,17 @@ export class BlockChain{
     }
 
     getBalance(publicKey : string){
-
+        let balance = 0;
+        for(let block of this.blockChain){
+            for(let tx of block.transactions){
+                if(tx.fromAddress === publicKey){
+                    balance -= tx.amount
+                } 
+                if(tx.toAddress === publicKey){
+                    balance += tx.amount
+                }
+            }
+        }
     }
     
 }
