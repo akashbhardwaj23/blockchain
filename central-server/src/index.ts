@@ -22,16 +22,9 @@ wss.on("connection", (ws) => {
 
     ws.on("message", (data:string) => {
         const message = JSON.parse(data);
-        if(message.type === "join"){
-            if(message.isMiner){
-                UserManager.getInstance().join(message.id, true, ws)
-            } else {
-                UserManager.getInstance().join(message.id, false, ws)
-            }
-        }
-
-        if(message.type === "BLOCK_MINED"){
-            UserManager.getInstance().broadcast(message.id, message.data)
+       
+        handleMessage(message.type){
+            
         }
     })
 })
