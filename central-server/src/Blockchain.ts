@@ -32,7 +32,6 @@ export class BlockChain{
         const data = this.blockChain[blockNumber].transactions;
         return data
     }
-
     getBalance(publicKey : string){
         let balance = 0;
         for(let block of this.blockChain){
