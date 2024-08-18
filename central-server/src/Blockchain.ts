@@ -83,10 +83,6 @@ class Transactions {
     }
 }
 
-
-
-// defination of a block 
-
  class Block {
     public blockNumber : number
     public transactions : Transactions[]
